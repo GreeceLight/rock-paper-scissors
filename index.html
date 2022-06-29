@@ -9,6 +9,8 @@
 <body>
     <script>
         answer = null;
+        computerScore = 0;
+        playerScore = 0;
         playGame();
 
         function throwAnswer(){
@@ -26,15 +28,14 @@
 
         function playGame(){
             throwAnswer();
-            console.log(answer);
-            guess = String(prompt("Rock Paper or SCISSORS!!:"));
+            guess = String(prompt("Rock Paper or SCISSORS!!:").toLowerCase());
             if (answer == guess) {
-                console.log("Yay! You did it!!!");
-                playAgain();
+                console.log("Heck Yeah! " + guess + " beats " + answer);
+                return 1;
             }
             else{
-                console.log("You might want to try again");
-                playGame();
+                console.log("Oh no! " + answer + " beats " + guess);
+                return 2;
             }
         }
 
@@ -49,7 +50,6 @@
         }
         
         
-
 
     </script>
 </body>
