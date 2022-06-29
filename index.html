@@ -9,22 +9,47 @@
 <body>
     <script>
         answer = null;
-        answerNum = Math.random();
+        playGame();
 
         function throwAnswer(){
+            answerNum = Math.random();
             if (answerNum <= 0.3) {
-                answer = "Rock";
+                answer = "rock";
             }
             else if (answerNum > 0.3 && answerNum <= 0.6){
-                answer = "Paper";
+                answer = "paper";
             }
             else {
-                answer = "Scissors";
+                answer = "scissors";
+            }
+        }
+
+        function playGame(){
+            throwAnswer();
+            console.log(answer);
+            guess = String(prompt("Rock Paper or SCISSORS!!:"));
+            if (answer == guess) {
+                console.log("Yay! You did it!!!");
+                playAgain();
+            }
+            else{
+                console.log("You might want to try again");
+                playGame();
+            }
+        }
+
+        function playAgain(){
+            askPlay = prompt("Do you want to play again? :")
+            if(askPlay == "Yes" || askPlay == "yes"){
+                playGame();
+            }
+            else if (askPlay == "No" || askPlay == "no"){
+                alert("Okay, Bye")
             }
         }
         
-        guess = prompt("Rock Paper or SCISSORS!!:");
-        console.log(guess);
+        
+
 
     </script>
 </body>
