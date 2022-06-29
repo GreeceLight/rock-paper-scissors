@@ -8,21 +8,21 @@
 </head>
 <body>
     <script>
-        answer = null;
+        compGuess = null;
         computerScore = 0;
         playerScore = 0;
         playRounds();
 
-        function throwAnswer(){
-            answerNum = Math.random();
-            if (answerNum <= 0.3) {
-                answer = "rock";
+        function computerPlay(){
+            randNum = Math.random();
+            if (randNum <= 0.3) {
+                compGuess = "rock";
             }
-            else if (answerNum > 0.3 && answerNum <= 0.6){
-                answer = "paper";
+            else if (randNum > 0.3 && randNum <= 0.6){
+                compGuess = "paper";
             }
             else {
-                answer = "scissors";
+                compGuess = "scissors";
             }
         }
 
@@ -32,14 +32,14 @@
         }
 
         function playGame(){
-            throwAnswer();
-            guess = String(prompt("Rock Paper or SCISSORS!!:").toLowerCase());
-            if (answer == guess) {
-                console.log("Heck Yeah! " + guess + " beats " + answer);
+            computerPlay();
+            playerGuess = String(prompt("Rock Paper or SCISSORS!!:").toLowerCase());
+            if (compGuess == playerGuess) {
+                console.log("Heck Yeah! " + playerGuess + " beats " + compGuess);
                 return 1;
             }
             else{
-                console.log("Oh no! " + answer + " beats " + guess);
+                console.log("Oh no! " + compGuess + " beats " + playerGuess);
                 return 2;
             }
         }
@@ -66,7 +66,6 @@
                     console.log("Playerscore: " + playerScore + " | Computerscore: " + computerScore);
                 }
                 else{
-                    
                     computerScore++;
                     console.log("Computerscore: " + computerScore + " | Playerscore: " + playerScore);
                 }
