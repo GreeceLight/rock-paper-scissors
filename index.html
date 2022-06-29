@@ -8,7 +8,23 @@
 </head>
 <body>
     <script>
-        console.log("Hello World");
+        answer = null;
+        answerNum = Math.random();
+
+        function throwAnswer(){
+            if (answerNum <= 0.3) {
+                answer = "Rock";
+            }
+            else if (answerNum > 0.3 && answerNum <= 0.6){
+                answer = "Paper";
+            }
+            else {
+                answer = "Scissors";
+            }
+        }
+        throwAnswer();
+        console.log(answer)
+
     </script>
 </body>
 </html>
