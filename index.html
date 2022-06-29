@@ -11,7 +11,7 @@
         answer = null;
         computerScore = 0;
         playerScore = 0;
-        playGame();
+        playRounds();
 
         function throwAnswer(){
             answerNum = Math.random();
@@ -24,6 +24,11 @@
             else {
                 answer = "scissors";
             }
+        }
+
+        function reset(){
+            computerScore = 0;
+            playerScore = 0;
         }
 
         function playGame(){
@@ -40,16 +45,35 @@
         }
 
         function playAgain(){
+            if(computerScore>playerScore) alert("The computer won, oof!");
+            else alert("Hey! You Won!! WWOOOOOO!!!");
+
             askPlay = prompt("Do you want to play again? :")
             if(askPlay == "Yes" || askPlay == "yes"){
-                playGame();
+                playRounds();
+                reset();
             }
             else if (askPlay == "No" || askPlay == "no"){
                 alert("Okay, Bye")
+                reset();
             }
         }
         
-        
+        function playRounds() {
+            for(let round = 0; round < 5; round++){
+                if(playGame() == 1 ){
+                    playerScore++;
+                    console.log("Playerscore: " + playerScore + " | Computerscore: " + computerScore);
+                }
+                else{
+                    
+                    computerScore++;
+                    console.log("Computerscore: " + computerScore + " | Playerscore: " + playerScore);
+                }
+            }
+            playAgain();
+        }
+
 
     </script>
 </body>
