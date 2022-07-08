@@ -2,6 +2,8 @@
 compGuess = null;
 computerScore = 0;
 playerScore = 0;
+computerPlay();
+initialLoad();
 //________________________________________________________________
 //Function to create random computer Guess
 function computerPlay(){
@@ -15,12 +17,27 @@ function computerPlay(){
     else {
         compGuess = "scissors";
     }
+    console.log(compGuess);
 }
 //________________________________________________________________
-//Function maintaining the game
+//Functions maintaining the game
+function initialLoad(){
+    const rockChoice = document.querySelector('.rock');
+    const paperChoice = document.querySelector('.paper');
+    const scissorsChoice = document.querySelector('.scissors');
+    scissorsChoice.addEventListener('click', ()=> {
+        console.log('scissors chosen');
+    })
+    rockChoice.addEventListener('click', ()=> {
+        console.log('rock chosen');
+    })
+    paperChoice.addEventListener('click', ()=> {
+        console.log('paper chosen');
+    })
+}
+
 function playGame(){
     computerPlay();
-    playerGuess = String(prompt("Rock Paper or SCISSORS!!:").toLowerCase());
     if (compGuess == playerGuess) {
         console.log("Heck Yeah! " + playerGuess + " beats " + compGuess);
         return 1;
