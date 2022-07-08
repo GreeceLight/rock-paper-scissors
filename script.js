@@ -2,6 +2,15 @@
 compGuess = null;
 computerScore = 0;
 playerScore = 0;
+
+const rockChoice = document.querySelector('.rock');
+const paperChoice = document.querySelector('.paper');
+const scissorsChoice = document.querySelector('.scissors');
+const computerWins = document.querySelector('#compWins');
+const playerWins = document.querySelector('#playerWins');
+const whoWins = document.querySelector('#whoWon');
+
+
 initialLoad();
 //________________________________________________________________
 //Function to create random computer Guess
@@ -20,9 +29,6 @@ function computerPlay(){
 //________________________________________________________________
 //Functions maintaining the game
 function initialLoad(){
-    const rockChoice = document.querySelector('.rock');
-    const paperChoice = document.querySelector('.paper');
-    const scissorsChoice = document.querySelector('.scissors');
     rockChoice.addEventListener('click', ()=> {
         playGame('rock');
     })
@@ -38,12 +44,19 @@ function initialLoad(){
 function playGame(playerGuess){
     computerPlay();
     if ((compGuess == 'rock' && playerGuess == 'paper')  || (compGuess == 'paper' && playerGuess == 'scissors') || (compGuess == 'scissors' && playerGuess == 'rock')) {
-        console.log("Heck Yeah! " + playerGuess + " beats " + compGuess);
+        console.log("Heck Yeah! You chose " + playerGuess + "! And the computer chose " + compGuess);
+        whoWins.textContent = "Heck Yeah! You chose " + playerGuess + "! And the computer chose " + compGuess;
+        
         return 1;
     }
-    else if (compGuess == playerGuess) console.log('It was a draw on ' + playerGuess + '!');
+    else if (compGuess == playerGuess){
+        console.log('It was a draw on ' + playerGuess + '!');
+        whoWins.textContent = 'It was a draw on ' + playerGuess + '!';
+    } 
     else{
-        console.log("Oh no! " + compGuess + " beats " + playerGuess);
+        console.log("Oh no! The computer chose " + compGuess + "! And you chose " + playerGuess);
+        whoWins.textContent = "Oh no! The computer chose " + compGuess + "! And you chose " + playerGuess;
+
         return 2;
     }
 }
@@ -72,17 +85,17 @@ function playAgain(){
 }
 //________________________________________________________________
 //Function for rounds implementation
-// function playRounds() {
-//     for(let round = 0; round < 5; round++){
-//         if(playGame() == 1 ){
-//             playerScore++;
-//             console.log("Playerscore: " + playerScore + " | Computerscore: " + computerScore);
-//         }
-//         else{
-//             computerScore++;
-//             console.log("Computerscore: " + computerScore + " | Playerscore: " + playerScore);
-//         }
-//     }
-//     playAgain();
-// }
+function playRounds() {
+    for(let round = 0; round < 5; round++){
+        if(playGame() == 1 ){
+            playerScore++;
+            console.log("Playerscore: " + playerScore + " | Computerscore: " + computerScore);
+        }
+        else{
+            computerScore++;
+            console.log("Computerscore: " + computerScore + " | Playerscore: " + playerScore);
+        }
+    }
+    playAgain();
+}
 
