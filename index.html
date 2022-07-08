@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper SCISSORS</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div id="WinorLose">
@@ -19,25 +20,10 @@
 
 
     <script>
-        compGuess = null;
-        computerScore = 0;
-        playerScore = 0;
-        reeceScore = 0;
-        michaelscore = 69; 
+         
         playRounds();
 
-        function computerPlay(){
-            randNum = Math.random();
-            if (randNum <= 0.3) {
-                compGuess = "rock";
-            }
-            else if (randNum > 0.3 && randNum <= 0.6){
-                compGuess = "paper";
-            }
-            else {
-                compGuess = "scissors";
-            }
-        }
+        
 
         function reset(){
             computerScore = 0;
