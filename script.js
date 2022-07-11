@@ -2,14 +2,15 @@
 compGuess = null;
 computerScore = 0;
 playerScore = 0;
+rounds = 1;
 
+const roundsText = document.querySelector('#rounds');
 const rockChoice = document.querySelector('.rock');
 const paperChoice = document.querySelector('.paper');
 const scissorsChoice = document.querySelector('.scissors');
 const computerWins = document.querySelector('#compWins');
 const playerWins = document.querySelector('#playerWins');
 const whoWins = document.querySelector('#whoWon');
-
 
 initialLoad();
 //________________________________________________________________
@@ -30,13 +31,13 @@ function computerPlay(){
 //Functions maintaining the game
 function initialLoad(){
     rockChoice.addEventListener('click', ()=> {
-        playGame('rock');
+        return playGame('rock');
     })
     paperChoice.addEventListener('click', ()=> {
-        playGame('paper');
+        return playGame('paper');
     })
     scissorsChoice.addEventListener('click', ()=> {
-        playGame('scissors');
+         return playGame('scissors');
     })
 
 }
@@ -44,19 +45,19 @@ function initialLoad(){
 function playGame(playerGuess){
     computerPlay();
     if ((compGuess == 'rock' && playerGuess == 'paper')  || (compGuess == 'paper' && playerGuess == 'scissors') || (compGuess == 'scissors' && playerGuess == 'rock')) {
-        console.log("Heck Yeah! You chose " + playerGuess + "! And the computer chose " + compGuess);
         whoWins.textContent = "Heck Yeah! You chose " + playerGuess + "! And the computer chose " + compGuess;
-        
+        playerWins.textContent = ++playerScore;
+        addRounds();
         return 1;
     }
     else if (compGuess == playerGuess){
-        console.log('It was a draw on ' + playerGuess + '!');
         whoWins.textContent = 'It was a draw on ' + playerGuess + '!';
+        addRounds();
     } 
     else{
-        console.log("Oh no! The computer chose " + compGuess + "! And you chose " + playerGuess);
         whoWins.textContent = "Oh no! The computer chose " + compGuess + "! And you chose " + playerGuess;
-
+        computerWins.textContent = ++computerScore;
+        addRounds();
         return 2;
     }
 }
@@ -64,9 +65,11 @@ function playGame(playerGuess){
 //________________________________________________________________
 //Function to reset the game
 function reset(){
-    computerScore = 0;
-    playerScore = 0;
+    rounds = 1;
+    computerWins.textContent =  computerScore = 0;
+    playerWins.textContent =  playerScore = 0;
 }
+
 //________________________________________________________________
 //Function to play the game again
 function playAgain(){
@@ -85,17 +88,20 @@ function playAgain(){
 }
 //________________________________________________________________
 //Function for rounds implementation
-function playRounds() {
-    for(let round = 0; round < 5; round++){
-        if(playGame() == 1 ){
-            playerScore++;
-            console.log("Playerscore: " + playerScore + " | Computerscore: " + computerScore);
-        }
-        else{
-            computerScore++;
-            console.log("Computerscore: " + computerScore + " | Playerscore: " + playerScore);
-        }
+function addRounds() {
+    if (rounds < 5){
+        roundsText.textContent = 'Round: ' + rounds;
+        rounds++;
     }
-    playAgain();
+    else if (rounds == 5){
+        if (computerScore > playerScore){
+            roundsText.textContent = 'The Computer Won! Try Again?'
+            reset();
+        }
+        else if (computerScore < playerScore){
+            roundsText.textContent = 'The Player Won! Play Again?';
+            reset();
+        }
+    } 
 }
 
