@@ -12,7 +12,7 @@ const computerWins = document.querySelector('#compWins');
 const playerWins = document.querySelector('#playerWins');
 const whoWins = document.querySelector('#whoWon');
 
-initialLoad();
+main();
 //________________________________________________________________
 //Function to create random computer Guess
 function computerPlay(){
@@ -29,7 +29,7 @@ function computerPlay(){
 }
 //________________________________________________________________
 //Functions maintaining the game
-function initialLoad(){
+function main(){
     rockChoice.addEventListener('click', ()=> {
         return playGame('rock');
     })
@@ -70,22 +70,6 @@ function reset(){
     playerWins.textContent =  playerScore = 0;
 }
 
-//________________________________________________________________
-//Function to play the game again
-function playAgain(){
-    if(computerScore>playerScore) alert("The computer won, oof!");
-    else alert("Hey! You Won!! WWOOOOOO!!!");
-    
-    askPlay = prompt("Do you want to play again? :")
-    if(askPlay == "Yes" || askPlay == "yes"){
-        playRounds();
-        reset();
-    }
-    else if (askPlay == "No" || askPlay == "no"){
-        alert("Okay, Bye")
-        reset();
-    }
-}
 //________________________________________________________________
 //Function for rounds implementation
 function addRounds() {
